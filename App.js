@@ -3,7 +3,7 @@ import Header from './src/components/Header'
 import Footer from './src/components/Footer'
 import Card from './src/components/Card'
 
-export default function App() {
+function App() {
   return (
     <View style={styles.container}>
       <Header
@@ -49,3 +49,5 @@ const styles = StyleSheet.create ({
     padding: 10,
   },
 })
+
+export default App

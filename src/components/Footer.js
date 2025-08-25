@@ -1,6 +1,6 @@
 import {View, Text, StyleSheet} from 'react-native'
 
-export default function Footer() {
+function Footer() {
   return (
     <View style={styles.footer}>
         <Text style={styles.ftext}>©Todos os direitos reservados - Weslley Souza</Text>
@@ -21,3 +21,5 @@ const styles = StyleSheet.create({
     fontSize: 15
   }
 })
+
+export default Footer
