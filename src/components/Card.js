@@ -1,18 +1,20 @@
 import {View, Text, StyleSheet} from 'react-native'
+import {Image} from 'expo-image'
 
-export default function Card() {
+function Card({title, desc, img}) {
+
+  //const {titulo, desc} = props
+
   return (
+
     <View style={styles.card}>
-        <View style={styles.image}></View>
-        <View style={styles.text}>
-        <Text style={styles.title}>BOLO DE CENOURA COM COBERTURA</Text>
-        <Text style={styles.p}>A sobremesa brasileiríssima que é uma verdadeira alegria para o paladar, onde cada pedaço é um suspiro.
-        Uma maravilha culinária que você não pode deixar de experimentar!
-        Já pensou no que uma sobremesa dessas pode causar na sua mesa?
-        Só alegria!
-        </Text>
-        </View>
+      <Image style={styles.image} source={img} />
+      <View style={styles.text}>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.p}>{desc}</Text>
+      </View>
     </View>
+
   )
 }
 
@@ -20,31 +22,37 @@ const styles = StyleSheet.create({
     card: {
     width: "100%",
     height: 150,
-    backgroundColor: "#535353ff",
+    backgroundColor: "#ddddddff",
     padding: 10,
     flexDirection: "row",
     marginBottom: 30
   },
 
   image: {
-    width: 80,
-    height: 80,
-    backgroundColor: "white",
+    width: 90,
+    height: 130,
   },
 
   text: {
     flex: 1,
-    paddingHorizontal: 10,
-    flexDirection: "column"
+    paddingHorizontal: 20,
+    flexDirection: "column",
+    justifyContent: "center"
   },
 
   title: {
     fontWeight: "Bold",
-    color: "white"
+    color: "black",
+    fontSize: 20,
+    fontFamily: "Poppins, sans-serif",
   },
 
   p: {
-    color: "white",
-    textAlign: "justify"
+    color: "black",
+    textAlign: "justify",
+    paddingVertical: 10,
+    fontSize: 17
   },
 })
+
+export default Card
