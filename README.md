@@ -12,3 +12,8 @@
 - git config --global user.name
 - git config --global user.email
 
+quais os tipos de navegação posso usar com expo router
+- stack (empilhar telas uma em cima da outra)
+- tabs opções ficam na parte inferior do dispositivo
+- drower abre uma seção na esquerda da página
+- modal

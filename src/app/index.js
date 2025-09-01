@@ -1,14 +1,17 @@
 import { View, Text, StyleSheet } from 'react-native'
-import Header from './src/components/Header'
-import Footer from './src/components/Footer'
-import Card from './src/components/Card'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+import Card from '../components/Card'
+import { Link } from 'expo-router'
 
-function App() {
+export default function App() {
   return (
     <View style={styles.container}>
-      <Header
-      
-      />
+      <Header/>
+      <View>
+        <Link href='contact'><Text>Contato</Text></Link>
+        <Link href='about'><Text>Sobre Nós</Text></Link>
+      </View>
       <View style={styles.content}>
 
         <Card
@@ -49,5 +52,3 @@ const styles = StyleSheet.create ({
     padding: 10,
   },
 })
-
-export default App

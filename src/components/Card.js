@@ -25,7 +25,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#ddddddff",
     padding: 10,
     flexDirection: "row",
-    marginBottom: 30
+    marginBottom: 30,
+    overflow: "hidden",
+    paddingBottom: 10,
   },
 
   image: {
@@ -37,7 +39,8 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
     flexDirection: "column",
-    justifyContent: "center"
+    justifyContent: "flex-start",
+    overflow: "hidden",
   },
 
   title: {
