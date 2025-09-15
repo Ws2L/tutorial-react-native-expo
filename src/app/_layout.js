@@ -1,46 +1,28 @@
-import { Tabs } from "expo-router";
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import Entypo from '@expo/vector-icons/Entypo';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import { Stack } from "expo-router"
 
-export default function RootLayout() {
+export default function Layout() {
     return (
-        <Tabs screenOptions={{
-            tabBarActiveTintColor: '#008cffff',
-            tabBarInactiveTintColor: 'gray',
-            tabBarShowLabel: false
-            }}>
-                
-            <Tabs.Screen
+        <Stack>
+            <Stack.Screen   
                 name="index"
-                options={{
-                    title: "Home",
-                    headerShown: false,
-                    tabBarIcon: ({color}) => <MaterialIcons name="home" size={24} color={color} />
-                }}
+                options={{ headerShown: false }}
             />
-            <Tabs.Screen
-                name="about"
-                options={{
-                    title: "Sobre",
-                    tabBarIcon: ({color}) => <Entypo name="info" size={24} color={color} />
-                }}
+             <Stack.Screen   
+                name="login"
+                options={{ title: "Login" }}
             />
-            <Tabs.Screen
-                name="contact"
-                options={{
-                    title: "Contato",
-                    tabBarIcon: ({color}) => <MaterialCommunityIcons name="contacts" size={24} color={color} />
-                }}
+             <Stack.Screen   
+                name="signup"
+                options={{ title: "Cadastrar" }}
             />
-            <Tabs.Screen
-                name="profile"
-                options={{
-                    title: "Perfil",
-                    tabBarIcon: ({color}) => <Ionicons name="person-circle-sharp" size={24} color={color} />
-                }}
+             <Stack.Screen   
+                name="edituser"
+                options={{ title: "Editar Perfil" }}
             />
-        </Tabs>
+            <Stack.Screen   
+                name="(tabs)"
+                options={{ headerShown: false }}
+            />
+        </Stack>
     )
 }

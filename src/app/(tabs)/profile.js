@@ -1,21 +1,21 @@
 import { View, Text, Button, StyleSheet } from 'react-native'
 import { useRouter } from 'expo-router'
 
-export default function About() {
+export default function profile() {
 
     const router = useRouter()
 
     return (
         <View style={styles.container}>
-            <Text>Página Sobre Nós</Text>
+            <Text>Página do usuario</Text>
             <Button 
             title='Home'
-            onPress={() => router.replace('/')}
+            onPress={() => router.replace('/home')}
             />
 
             <Button 
-            title='Contato'
-            onPress={() => router.replace('/contact')}
+            title='Sobre Nós'
+            onPress={() => router.push('/about')}
             />
         </View>
     )
