@@ -1,12 +1,13 @@
 import { View, Text, StyleSheet, Pressable } from 'react-native'
 import {Image} from 'expo-image'
 import Feather from '@expo/vector-icons/Feather';
-import Feather from '@expo/vector-icons/Feather';
 import { useRouter } from 'expo-router'
+import { useUserStore } from '../stores/useUserStore'
 
-function CardUser({id, name, email, avatar, users, setUsers}) {
+function CardUser({id, name, email, avatar, }) {
 
     const router = useRouter()
+    const { users, setUsers } = useUserStore()
 
     const handleDelete = async () => {
         const response = await fetch(`http://localhost:3333/profile/${id}`, {
@@ -14,14 +15,13 @@ function CardUser({id, name, email, avatar, users, setUsers}) {
         });
         if(response.ok){
             console.log("Deletado com sucesso");
-            const updatedUsers = users.filter((user) => user.id !== id); // cria um novo array sem o id que foi excluido
+            const updatedUsers = users.filter((user) => user.id !== id);
             setUsers(updatedUsers)
             console.log("Erro ao deletar")
         }
     }
 
     const handleEdit = () => {
-    console.log("Editar usuário")
     router.push({
       pathname: '/edituser',
       params: { id, name, email, avatar }
@@ -40,12 +40,12 @@ function CardUser({id, name, email, avatar, users, setUsers}) {
         <Text>{email}</Text>
       </View>
 
-      <View>
+      <View style={styles.buttons}>
         <Pressable onPress={handleEdit}>
             <Feather name="edit" size={24} color="black" />
         </Pressable>
         <Pressable onPress={handleDelete}>
-            <Feather name="trash-2" size={24} color="black" />
+            <Feather name="trash-2" size={26} color="black" />
         </Pressable>
       </View>
     </View>
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     padding: 10,
     flexDirection: 'row',
     gap: 15,
-    backgroundColor: "rgba(37, 150, 255, 1)",
+    backgroundColor: "rgba(224, 224, 224, 1)",
     borderRadius: 10,
     marginBottom: 15
   },
@@ -75,6 +75,11 @@ const styles = StyleSheet.create({
   h1: {
     fontSize: 20,
     fontWeight: 'bold'
+  },
+  buttons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10
   }
 })
 

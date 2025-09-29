@@ -7,9 +7,10 @@ import Entypo from '@expo/vector-icons/Entypo'
 export default function RootLayout() {
     return (
         <Tabs screenOptions={{
-            tabBarActiveTintColor: 'rgba(37, 150, 255, 1)',
-            tabBarInactiveTintColor: '#2b2b2bff',
+            tabBarActiveTintColor: '#2196F3',
+            tabBarInactiveTintColor: '#ffffffff',
             tabBarLabelStyle: { fontSize: 8 },
+            tabBarStyle: { backgroundColor: '#000000ff' }
         }}
         >
             <Tabs.Screen 

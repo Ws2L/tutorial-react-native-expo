@@ -1,18 +1,21 @@
 import { View, Text, Button, StyleSheet, TextInput } from 'react-native'
-import { useRouter } from 'expo-router'
-import { useState, useGlobalSearchParams } from 'react'
+import { useRouter, useGlobalSearchParams } from 'expo-router'
+import { useState } from 'react'
+import { useUserStore } from '../stores/useUserStore'
 
 export default function EditUser() {
+
+    const { users, setUsers } = useUserStore()
 
     const router = useRouter()
     const { id, name: eName, email: eEmail, avatar: eAvatar } = useGlobalSearchParams()
 
-    const [name, setName] = useState(ename)
+    const [name, setName] = useState(eName)
     const [email, setEmail] = useState(eEmail)
     const [pass, setPass] = useState("")
     const [avatar, setAvatar] = useState(eAvatar)
 
-    const handleSignup = async () => {
+    const handleEdit = async () => {
 
         const profile = {
             name,
@@ -21,7 +24,7 @@ export default function EditUser() {
             avatar
         }
 
-        const response = await fetch("http://localhost:3333/profile", {
+        const response = await fetch(`http://localhost:3333/profile/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -29,52 +32,59 @@ export default function EditUser() {
             body: JSON.stringify(profile),
         })
 
-        if(response.ok){
-            console.log("Cadastrado com sucesso")
-            router.navigate('/login')
+        if (response.ok) {
+            console.log("Perfil editado com sucesso!")
+
+            const updatedUsers = users.map(user => {
+                if (user.id === id) {
+                    return { id, ...profile }
+                }
+                return user
+            })
+            setUsers(updatedUsers)
+            router.navigate('/contact')
         } else {
-            console.log("Erro ao cadastrar")
+            console.log("Erro ao editar")
         }
     }
 
     return (
         <View style={styles.container}>
 
-        <Text style={styles.title}>Cadastre-se</Text>
+            <Text style={styles.title}>Editar Perfil</Text>
 
-        <View style={{ width: '80%' }}>
-            <Text style={styles.label}>Nome:</Text>
-            <TextInput 
-                style={styles.input}
-                value={name}
-                onChangeText={setName}
-            />
-            <Text style={styles.label}>Email:</Text>
-            <TextInput 
-                style={styles.input}
-                value={email}
-                onChangeText={setEmail}
-            />
-            <Text style={styles.label}>Senha:</Text>
-            <TextInput 
-                style={styles.input}
-                value={pass}
-                onChangeText={setPass}
-            />
-            <Text style={styles.label}>Avatar:</Text>
-            <TextInput 
-                style={styles.input}
-                value={avatar}
-                onChangeText={setAvatar}
-            />
-        </View>
-            <View style={{ marginTop: 20 }}>
-                <Button 
-                    title='Salvar'
-                    onPress={handleSignup}
+            <View style={{ width: '80%' }}>
+                <Text style={styles.label}>Nome:</Text>
+                <TextInput
+                    style={styles.input}
+                    value={name}
+                    onChangeText={setName}
+                />
+                <Text style={styles.label}>Email:</Text>
+                <TextInput
+                    style={styles.input}
+                    value={email}
+                    onChangeText={setEmail}
+                />
+                <Text style={styles.label}>Senha:</Text>
+                <TextInput
+                    style={styles.input}
+                    value={pass}
+                    onChangeText={setPass}
+                />
+                <Text style={styles.label}>Avatar:</Text>
+                <TextInput
+                    style={styles.input}
+                    value={avatar}
+                    onChangeText={setAvatar}
                 />
             </View>
-          
+            <View style={{ marginTop: 20 }}>
+                <Button
+                    title='Editar'
+                    onPress={handleEdit}
+                />
+            </View>
         </View>
     )
 }
@@ -85,12 +95,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    title:{
+    title: {
         fontSize: 20,
         fontWeight: 'bold',
         marginBottom: 20
     },
-    label:{
+    label: {
         marginTop: 10
     },
     input: {

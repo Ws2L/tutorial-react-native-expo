@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     card: {
     width: "100%",
     height: 150,
-    backgroundColor: "#ddddddff",
+    backgroundColor: "rgba(224, 224, 224, 1)",
     padding: 10,
     flexDirection: "row",
     marginBottom: 30,

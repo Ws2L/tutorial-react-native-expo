@@ -8,9 +8,9 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Header/>
-      <View>
-        <Link href='contact'><Text>Contato</Text></Link>
-        <Link href='about'><Text>Sobre Nós</Text></Link>
+      <View style={styles.menu}>
+        <Link href='contact'><Text style={styles.it}>Contato</Text></Link>
+        <Link href='about'><Text style={styles.it}>Sobre Nós</Text></Link>
       </View>
       <View style={styles.content}>
 
@@ -42,7 +42,7 @@ const styles = StyleSheet.create ({
     width: "100%",
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   
   content: {
@@ -51,4 +51,19 @@ const styles = StyleSheet.create ({
     backgroundColor: "#eeeeeeff",
     padding: 10,
   },
+
+  menu: {
+    flex: 1,
+    width: "100%",
+    backgroundColor: "rgba(37, 150, 255, 1)",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+  },
+
+  it: {
+    color: "white",
+    fontSize: 15,
+    fontWeight: "bold",
+  }
 })
