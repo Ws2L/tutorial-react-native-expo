@@ -6,21 +6,20 @@ function Card({title, desc, img}) {
   //const {titulo, desc} = props
 
   return (
-
-    <View style={styles.card}>
-      <Image style={styles.image} source={img} />
-      <View style={styles.text}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.p}>{desc}</Text>
+    <View style={styles.container}>
+      <View style={styles.card}>
+        <Image style={styles.image} source={img} />
+        <View style={styles.text}>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.p}>{desc}</Text>
+        </View>
       </View>
     </View>
-
-  )
+  );
 }
 
 const styles = StyleSheet.create({
     card: {
-    width: "100%",
     height: 150,
     backgroundColor: "rgba(224, 224, 224, 1)",
     padding: 10,
