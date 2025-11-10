@@ -1,41 +1,38 @@
-import { View, Text, Button, StyleSheet } from 'react-native'
-import { useRouter } from 'expo-router'
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import { View, Text, Button, StyleSheet } from "react-native";
+import { useRouter } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useAuthStore } from "../../stores/useAuthStore";
+import { Image } from "expo-image";
+export default function Profile() {
+  const router = useRouter();
+  const { profile, logout } = useAuthStore();
 
-export default function profile() {
+  const handleLogout = async () => {
+    await AsyncStorage.removeItem("userLogged");
+    router.replace("/login");
+    logout();
+  };
 
-    const router = useRouter()
+  return (
+    <View style={styles.container}>
+      <Image
+        source={
+          profile?.avatar ||
+          "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+        }
+        style={{ width: 100, height: 100, borderRadius: 50, marginBottom: 20 }}
+      />
+      <Text>{profile?.name}</Text>
+      <Text>{profile?.email}</Text>
 
-    const handleLogout = async () => {
-        await AsyncStorage.removeItem('logado')
-        router.replace('/login')
-    }
-
-    return (
-        <View style={styles.container}>
-            <Text>Página do usuario</Text>
-            <Button 
-            title='Home'
-            onPress={() => router.replace('/home')}
-            />
-
-            <Button 
-            title='Sobre Nós'
-            onPress={() => router.push('/about')}
-            />
-
-            <Button 
-            title='Logout'
-            onPress={handleLogout}
-            />
-        </View>
-    )
+      <Button title="Logout" onPress={handleLogout} />
+    </View>
+  );
 }
-
-const styles = StyleSheet.create ({
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-    }
-})
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
