@@ -3,7 +3,9 @@ import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useAuthStore } from "../../stores/useAuthStore";
 import { Image } from "expo-image";
+
 export default function Profile() {
+
   const router = useRouter();
   const { profile, logout } = useAuthStore();
 
@@ -29,6 +31,7 @@ export default function Profile() {
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
